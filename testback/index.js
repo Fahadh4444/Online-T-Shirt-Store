@@ -4,9 +4,23 @@ const app = express();
 
 const port = 3030;
 
+const admin = (req,res) => {
+    return res.send("This is Admin")
+};
+
+
 app.get("/", (req,res) => {
     return res.send("You are here finally!!!");
 });
+
+
+const isAdmin = (req,res,next) => {
+    console.log("isAdmin is running");
+    next();
+};
+
+app.get("/admin",isAdmin,admin);
+
 
 app.get("/login", (req,res) => {
     return res.send("You are here finally to login!!!");
