@@ -19,7 +19,7 @@ const isAdmin = (req,res,next) => {
     next();
 };
 
-app.get("/admin",isAdmin,admin);
+app.get("/admin",isAdmin,admin);//We can craft code that if isAdmin is true then only next() will be returned otherwise, we stop the request.
 
 
 app.get("/login", (req,res) => {
