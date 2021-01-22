@@ -1,4 +1,4 @@
-const mongoose  = require("mongoose");
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const ProductCartSchema = new mongoose.Schema({
@@ -11,12 +11,12 @@ const ProductCartSchema = new mongoose.Schema({
     price: Number
 });
 
-const ProductCart  = mongoose.model("ProductCart",ProductCartSchema); 
+const ProductCart = mongoose.model("ProductCart", ProductCartSchema);
 
 const OrderSchema = new mongoose.Schema({
     products: [ProductCartSchema],
     transaction_id: {},
-    amount: {type: Number},
+    amount: { type: Number },
     address: String,
     updated: Date,
     user: {
@@ -24,9 +24,9 @@ const OrderSchema = new mongoose.Schema({
         ref: "User"
     }
 },
- {timestamps: true }
+    { timestamps: true }
 );
 
-const Order = mongoose.model("Order",OrderSchema); 
+const Order = mongoose.model("Order", OrderSchema);
 
-module.exports = { Order, ProductCart};
+module.exports = { Order, ProductCart };

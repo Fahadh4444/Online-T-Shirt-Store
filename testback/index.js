@@ -4,33 +4,33 @@ const app = express();
 
 const port = 3030;
 
-const admin = (req,res) => {
+const admin = (req, res) => {
     return res.send("This is Admin")
 };
 
 
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
     return res.send("You are here finally!!!");
 });
 
 
-const isAdmin = (req,res,next) => {
+const isAdmin = (req, res, next) => {
     console.log("isAdmin is running");
     next();
 };
 
-app.get("/admin",isAdmin,admin);//We can craft code that if isAdmin is true then only next() will be returned otherwise, we stop the request.
+app.get("/admin", isAdmin, admin);//We can craft code that if isAdmin is true then only next() will be returned otherwise, we stop the request.
 
 
-app.get("/login", (req,res) => {
+app.get("/login", (req, res) => {
     return res.send("You are here finally to login!!!");
 });
 
-app.get("/signup", (req,res) => {
+app.get("/signup", (req, res) => {
     return res.send("You are here finally to signup!!!");
 });
 
-app.get("/logout", (req,res) => {
+app.get("/logout", (req, res) => {
     return res.send("Bye!!!");
 });
 
