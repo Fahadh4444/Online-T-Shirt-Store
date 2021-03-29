@@ -9,7 +9,7 @@ router.post(
     [
         check("name", "name sholud be atleast 3 char").isLength({ min: 3 }),
         check("email", "email is required").isEmail(),
-        check("password", "password sholud be atleast 3 char").isLength({ min: 5 })
+        check("password", "password sholud be atleast 3 char").isLength({ min: 3 })
     ],
     signup
 );
