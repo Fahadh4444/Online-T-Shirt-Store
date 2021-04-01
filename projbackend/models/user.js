@@ -49,14 +49,14 @@ userSchema.virtual("password")
         this.encry_password = this.securePassword(password);
     })
     .get(function () {
-        return this._password
+        return this._password;
     })
 
 
 userSchema.methods = {
 
     autheticate: function (plainpassword) {
-        return this.securePassword(plainpassword) === this.encry_password
+        return this.securePassword(plainpassword) === this.encry_password;
     },
 
 
@@ -65,13 +65,13 @@ userSchema.methods = {
         try {
             return crypto
                 .createHmac('sha256', this.salt)
-                .update('plainpassword')
+                .update(plainpassword)
                 .digest('hex');
         } catch (err) {
             return "";
         }
     }
-}
+};
 
 
 module.exports = mongoose.model("User", userSchema);
