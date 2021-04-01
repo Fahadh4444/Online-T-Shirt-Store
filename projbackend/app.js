@@ -8,11 +8,11 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 
-//IMPORT ROUTES
+//* IMPORT ROUTES
 const authRoutes = require("./routes/auth");
 
 
-//DB CONNECTION
+//* DB CONNECTION
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -22,21 +22,21 @@ mongoose.connect(process.env.DATABASE, {
 });
 
 
-//MIDDLEWARES
+//* MIDDLEWARES
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
 
-//MY ROUTES
+//* MY ROUTES
 app.use("/api", authRoutes);
 
 
-//PORT
+//* PORT
 const port = process.env.PORT || 8000;
 
 
-//STARTING SERVER
+//* STARTING SERVER
 app.listen(port , ()=>{
     console.log(`App is running at ${port}`);
 });
