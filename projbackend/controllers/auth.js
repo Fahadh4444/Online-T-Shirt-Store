@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 
-
+//* SIGNUP
 exports.signup = (req, res) => {
 
     const errors = validationResult(req);
@@ -29,29 +29,32 @@ exports.signup = (req, res) => {
 };
 
 
+//* SINGNIN
 exports.signin = (req,res) => {
     const { email, password } = req.body;
-
+    //? Checking Error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({
             error: errors.array()[0].msg
         });
     };
-
+    //? Fetching user from database using findone
+    //? checking email
     User.findOne({email}, (err, user) => {
-        if(err){
-            res.status(400).json({
+        if(err || !user){
+            return res.status(400).json({
                 error: "User does not exists"
             });
         };
-
+        // console.log(user.autheticate(password));
+        //? Checking Password
         if(!user.autheticate(password)){
-            res.status(401).json({
+            return res.status(401).json({
                 error: "Email and Password do not match"
             });
         };
-
+        // console.log(user.securePassword(password));
         //? Create TOKEN by MAJIDH
         const token = jwt.sign({_id: user._id}, process.env.SECRET);
         //? Put token in cookie
@@ -64,8 +67,11 @@ exports.signin = (req,res) => {
 };
 
 
+//* SIGNOUT
 exports.signout = (req, res) => {
+    //? Clearing Cookies using body-parser
+    res.clearCookie("token");
     res.json({
-        message: "User Signout"
+        message: "User Signout successfully"
     });
 };
