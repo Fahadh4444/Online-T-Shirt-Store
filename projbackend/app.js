@@ -10,6 +10,7 @@ const cors = require('cors');
 
 //* IMPORT ROUTES
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 
 //* DB CONNECTION
@@ -30,6 +31,7 @@ app.use(cors());
 
 //* MY ROUTES
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 
 //* PORT
@@ -37,6 +39,6 @@ const port = process.env.PORT || 8000;
 
 
 //* STARTING SERVER
-app.listen(port , ()=>{
+app.listen(port, () => {
     console.log(`App is running at ${port}`);
 });
