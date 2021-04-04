@@ -21,3 +21,15 @@ exports.getUser = (req, res) => {
     req.profile.updatedAt = undefined;
     return res.json(req.profile);
 }
+
+//* getAllUsers Route
+exports.getAllUsers = (req, res) => {
+    User.find().exec((err, users) => {
+        if (err || !users) {
+            return res.status(400).json({
+                error: "NO USERS FOUND"
+            });
+        };
+        res.json(users);
+    })
+}
