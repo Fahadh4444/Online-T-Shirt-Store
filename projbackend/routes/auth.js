@@ -3,7 +3,7 @@ var router = express.Router();
 const { check, validationResult } = require('express-validator');
 const { signout, signup, signin, isSignedIn } = require("../controllers/auth")
 
-//* SIGNUP post route
+//* SIGNUP POST Route
 router.post(
     "/signup",
     [
@@ -14,7 +14,7 @@ router.post(
     signup
 );
 
-//* SIGNIN post route
+//* SIGNIN POST Route
 router.post(
     "/signin",
     [
@@ -24,7 +24,7 @@ router.post(
     signin
 );
 
-//* SIGNOUT get route
+//* SIGNOUT GET Route
 router.get("/signout", signout);
 
 module.exports = router;

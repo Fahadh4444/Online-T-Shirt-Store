@@ -4,15 +4,14 @@ const router = express.Router();
 const { getUserById, getUser, updateUser, userPurchaseList } = require("../controllers/user");
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controllers/auth");
 
-//* Middleware
+//* (Param)Middleware
 router.param("userId", getUserById);
 
-//* getUser post route
+//* getUser POST Route
 router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
-//* updateUser put route
+//* updateUser PUT Route
 router.put("/user/:userId", isSignedIn, isAuthenticated, updateUser);
-//* userPurchaseList get route
+//* userPurchaseList GET Route
 router.get("/order/user/:userId", isSignedIn, isAuthenticated, userPurchaseList);
-
 
 module.exports = router;
