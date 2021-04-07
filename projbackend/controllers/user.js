@@ -14,7 +14,7 @@ exports.getUserById = (req, res, next, id) => {
     });
 };
 
-//* getUser Route
+//* getUser Route Method
 exports.getUser = (req, res) => {
     req.profile.salt = undefined;
     req.profile.encry_password = undefined;
@@ -23,7 +23,7 @@ exports.getUser = (req, res) => {
     return res.json(req.profile);
 }
 
-//* updateUser Route
+//* updateUser Route Method
 exports.updateUser = (req, res) => {
     User.findByIdAndUpdate(
         { _id: req.profile._id },
@@ -44,7 +44,7 @@ exports.updateUser = (req, res) => {
     );
 }
 
-//* userPurchaseList Route
+//* userPurchaseList Route Method
 exports.userPurchaseList = (req, res) => {
     Order.find({ user: req.profile._id })
         .populate("user", "_id name")

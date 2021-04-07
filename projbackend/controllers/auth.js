@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 
-//* SIGNUP
+//* SIGNUP Route Method
 exports.signup = (req, res) => {
 
     const errors = validationResult(req);
@@ -28,7 +28,7 @@ exports.signup = (req, res) => {
     });
 };
 
-//* SINGNIN
+//* SINGNIN Route Method
 exports.signin = (req, res) => {
     const { email, password } = req.body;
     //? Checking Error
@@ -65,7 +65,7 @@ exports.signin = (req, res) => {
 
 };
 
-//* SIGNOUT
+//* SIGNOUT Route Method
 exports.signout = (req, res) => {
     //? Clearing Cookies using body-parser
     res.clearCookie("token");
@@ -74,7 +74,7 @@ exports.signout = (req, res) => {
     });
 };
 
-//* PROTECTED ROUTES
+//* PROTECTED ROUTES Route Method
 exports.isSignedIn = expressJwt({
     secret: process.env.SECRET,
     userProperty: "auth"
