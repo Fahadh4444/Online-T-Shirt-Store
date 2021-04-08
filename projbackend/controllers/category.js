@@ -24,7 +24,7 @@ exports.createCategory = (req, res) => {
                 error: "Not able to save category in DB"
             });
         }
-        res.json(category);
+        res.json({ category });
     });
 };
 
@@ -38,9 +38,38 @@ exports.getAllCategories = (req, res) => {
     Category.find().exec((err, categories) => {
         if (err) {
             return res.status(400).json({
-                error: "No Categories fpond in DB"
+                error: "No Categories found in DB"
             });
         }
         res.json(categories);
+    });
+};
+
+//* updateCategory Route Method
+exports.updateCategory = (req, res) => {
+    const category = req.category;
+    category.name = req.body.name;
+    category.save((err, updatedCategory) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Failed to update category"
+            });
+        }
+        res.json(updatedCategory);
+    });
+};
+
+//* removeCategory Route Method
+exports.removeCategory = (req, res) => {
+    const category = req.category;
+    category.remove((err, category) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Failed to delete this category"
+            });
+        }
+        res.json({
+            message: `Successfully Deleted ${category.name} category`
+        });
     });
 };
