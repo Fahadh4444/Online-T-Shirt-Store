@@ -26,7 +26,7 @@ exports.createProduct = (req, res) => {
     form.parse(req, (err, fields, file) => {
         if (err) {
             return res.status(400).json({
-                error: "Problrm with Image"
+                error: "Problem with Image"
             });
         }
         //* Destructure the field
@@ -51,7 +51,7 @@ exports.createProduct = (req, res) => {
                     error: "File Size too Big!"
                 });
             }
-            product.photo.data = fs.readFileSync(file.photo.path);
+            product.photo.data = fileSystem.readFileSync(file.photo.path);
             product.photo.contentType = file.photo.type
         };
 
@@ -66,3 +66,18 @@ exports.createProduct = (req, res) => {
         });
     });
 };
+
+//* getProduct Route Method
+exports.getProduct = (req, res) => {
+    req.product.photo = undefined;
+    return res.json(req.product);
+}
+
+//*MIddleWare
+exports.photo = (req, res, next) => {
+    if (req.product.photo.data) {
+        res.set("Content-Type", req.product.photo.contentType);
+        return res.send(req.product.photo.data)
+    };
+    next();
+}
