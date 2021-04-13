@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getProductById, createProduct, getProduct, photo } = require("../controllers/product")
+const { getProductById, createProduct, getProduct, deleteProduct, updateProduct, getAllProducts, photo } = require("../controllers/product")
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controllers/auth");
 const { getUserById } = require("../controllers/user");
 
@@ -13,6 +13,12 @@ router.param("productId", getProductById);
 router.post("/product/create/:userId", isSignedIn, isAuthenticated, isAdmin, createProduct);
 //* getProduct GET Route
 router.get("/product/:productId", getProduct);
+//* deleteProduct DELETE Route
+router.delete("/product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, deleteProduct);
+//* updateProduct PUT Route
+router.put("/product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, updateProduct);
+//* getAllProducts GET Route
+router.get("/products", getAllProducts);
 //* Middleware Route to load photo in background
 router.get("/product/photo/:productId", photo);
 module.exports = router;
