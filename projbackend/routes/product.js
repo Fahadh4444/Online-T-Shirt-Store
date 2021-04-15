@@ -23,4 +23,5 @@ router.get("/products", getAllProducts);
 router.get("/product/photo/:productId", photo);
 //* getAllUniqueCategories GET Route
 router.get("products/categories", getAllUniqueCategories);
+
 module.exports = router;
