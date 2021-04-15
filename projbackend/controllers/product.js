@@ -155,6 +155,18 @@ exports.getAllProducts = (req, res) => {
         });
 }
 
+//*getAllUniqueCategories Route Method
+exports.getAllUniqueCategories = (req, res) => {
+    Product.distinct("category", {}, (err, category) => {
+        if (err) {
+            return res.status(400).json({
+                error: "No Category Foound"
+            });
+        };
+        res.json(category);
+    });
+};
+
 //* Middleware to update stock and sold in productmodel
 exports.updateStock = (req, res, next) => {
     let myOperations = req.body.order.products.map(product => {
