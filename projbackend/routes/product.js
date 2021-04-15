@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getProductById, createProduct, getProduct, deleteProduct, updateProduct, getAllProducts, photo } = require("../controllers/product")
+const { getProductById, createProduct, getProduct, deleteProduct, updateProduct, getAllProducts, photo, getAllUniqueCategories } = require("../controllers/product")
 const { isSignedIn, isAuthenticated, isAdmin } = require("../controllers/auth");
 const { getUserById } = require("../controllers/user");
 
@@ -21,4 +21,6 @@ router.put("/product/:productId/:userId", isSignedIn, isAuthenticated, isAdmin, 
 router.get("/products", getAllProducts);
 //* Middleware Route to load photo in background
 router.get("/product/photo/:productId", photo);
+//* getAllUniqueCategories GET Route
+router.get("products/categories", getAllUniqueCategories);
 module.exports = router;
