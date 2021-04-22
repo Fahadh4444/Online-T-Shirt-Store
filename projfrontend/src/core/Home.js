@@ -6,7 +6,7 @@ import Base from "./Base";
 const Home = () => {
     console.log("API IS ", API);
     return (
-        <Base>
+        <Base title="Home Page" description="Welecome to T-Shirt Store">
 
         </Base>
     );
