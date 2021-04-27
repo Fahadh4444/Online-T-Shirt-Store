@@ -15,6 +15,7 @@ const AdminDashBoard = () => {
                 <ul className="List-group" style={{ padding: "0px" }}>
                     <li className="List-group-item">
                         <Link to="/admin/create/category" className="nav-link" style={{ color: "#212529" }}>Create Categories</Link>
+                        <Link to="/admin/categories" className="nav-link" style={{ color: "#212529" }}>Manage Categories</Link>
                         <Link to="/admin/create/product" className="nav-link" style={{ color: "#212529" }}>Create Product</Link>
                         <Link to="/admin/products" className="nav-link" style={{ color: "#212529" }}>Manage Products</Link>
                         <Link to="/admin/orders" className="nav-link" style={{ color: "#212529" }}>Manage Orders</Link>
