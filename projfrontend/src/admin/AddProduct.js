@@ -19,12 +19,13 @@ const AddProduct = () => {
         category: "",
         loading: false,
         error: "",
+        err: false,
         createdProduct: "",
         getRedirect: false,
         formData: ""
     });
 
-    const { name, description, price, stock, categories, category, loading, error, createdProduct, getRedirect, formData } = values;
+    const { name, description, price, stock, categories, category, loading, error, err, createdProduct, getRedirect, formData } = values;
 
     const preLoad = () => {
         getAllCategories().then(data => {
@@ -47,7 +48,7 @@ const AddProduct = () => {
         createProduct(user._id, token, formData)
             .then(data => {
                 if (data.error) {
-                    setValues({ ...values, error: data.error })
+                    setValues({ ...values, error: data.error, err: false })
                 } else {
                     setValues({
                         ...values,
@@ -58,6 +59,7 @@ const AddProduct = () => {
                         stock: "",
                         category: "",
                         loading: false,
+                        err: true,
                         createProduct: data.name
                     })
                 }
@@ -72,7 +74,7 @@ const AddProduct = () => {
 
     const successMessage = () => {
         return (
-            <div className="alert alert-success mt-3" style={{ display: createProduct ? "" : "none" }}>
+            <div className="alert alert-success mt-3" style={{ display: err ? "" : "none" }}>
                 <h4>{createProduct} Created Successfully!!!</h4>
             </div>
         )
