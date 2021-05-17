@@ -54,10 +54,10 @@ const Cart = () => {
         <Base title="Cart Page" description="Read to Check Out">
             <div className="row">
                 <div className="col-6">
-                    {loadAllProducts()}
+                    {products.length > 0 ? loadAllProducts() : (<h3>No Products!!!</h3>)}
                 </div>
                 <div className="col-6">
-                    {loadCheckOut()}
+                    p
                 </div>
             </div>
         </Base>
