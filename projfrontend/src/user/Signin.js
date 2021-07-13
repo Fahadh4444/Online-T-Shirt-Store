@@ -35,7 +35,7 @@ const Signin = () => {
                     });
                 };
             })
-            .catch(console.log("Error in Signin Form"));
+            .catch(err => console.log("Error in Signin Form"));
     };
 
     const performRedirect = () => {

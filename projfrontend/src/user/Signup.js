@@ -35,7 +35,7 @@ const Signup = () => {
                     })
                 }
             })
-            .catch(console.log("Error in Signup Form"));
+            .catch(err => console.log("Error in Signup Form"));
     };
 
     const signUpForm = () => {
